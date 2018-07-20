@@ -1,0 +1,41 @@
+<div class="ui container home-container sticky">
+    <div class="ui piled segment">
+        <h1 class="ui header centered">Saved Articles</h1>
+        <h3 class="ui header centered">These are your saved articles</h3>
+
+    </div>
+
+    <div class="ui items">
+        {{#each articles}}
+        <div class="item">
+            {{!--
+            <div class="ui small image">
+                <img src="/images/wireframe/image.png">
+            </div> --}}
+
+            <div class="left aligned content article-content">
+                <form action="/scrape_articles" method="POST">
+                    <input type="hidden" name="title" value="{{this.title}}">
+                    <input type="hidden" name="link" value="{{this.url}}">
+                    <div class="header">
+                        <h3>{{this.title}}</h3>
+                    </div>
+                    <div class="description">
+                        <p></p>
+                    </div>
+                    <div class="extra">
+                        <button type="submit" class="ui right floated inverted primary button">
+                            <i class="pencil alternate icon"></i> Add Notes
+                        </button>
+                        <a href="{{this.url}}" class="ui right floated blue button">
+                            <i class="linkify icon"></i> Link
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="ui inverted fitted divider"></div>
+        {{/each}}
+
+    </div>
+</div>

@@ -1,0 +1,76 @@
+
+
+body{
+    background-image: url("https://images.unsplash.com/photo-1529243856184-fd5465488984?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95834c9e01a9ff2a5a61c79fc92a180f&auto=format&fit=crop&w=1969&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* nav right button */
+.ui.menu:not(.vertical) .item>.button {
+    margin: -.5em 0.6em;
+}
+
+
+/* form header */
+.ui.header {
+    /* text-transform: uppercase; */
+    color: rgb(255, 255, 255);
+}
+
+.home-container{
+    background: transparent;
+    background: rgba(56, 55, 55, 0.774);
+    
+}
+
+.article-content{
+    color:whitesmoke;
+    padding: 10px;
+}
+
+.article-content .header{
+    padding: 0.3% 2%;
+}
+
+.article-content p{
+    padding: 1% 2%;
+}
+
+.article-content .extra{
+    padding: 1%;
+}
+
+
+.ui.items>.item .extra>[class*="right floated"] {
+    margin: .25rem 1rem .5rem;
+}
+
+.segment .header{
+    color: black;
+    font-size: 10rem;
+}
+
+
+
+/* menu left */
+.ui.secondary.inverted.menu .link.item, .ui.secondary.inverted.menu a.item {
+    color: rgb(21,171,238)!important;
+    font-size: 1.3rem;
+}
+
+/* menu font size */
+.ui.menu {
+    font-size: 1.3rem;
+}
+
+/* menu padding */
+.ui.secondary.pointing.menu .item {
+    padding: .35714286em 1.14285714em;
+}
+
+/* top segment */
+.ui.piled.segment:first-child {
+    margin-top: 2px 0px 5px 0px;
+}

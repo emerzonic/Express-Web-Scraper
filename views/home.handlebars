@@ -1,0 +1,129 @@
+<div class="ui container home-container sticky">
+    <div class="ui piled segment">
+        <h1 class="ui header centered">Welcome to the Web Scraper</h1>
+        <h3 class="ui header centered">Get all the latest news from around the world</h3>
+
+    </div>
+
+    <div class="ui items">
+        {{#each data}}
+        <div class="item">
+            {{!--
+            <div class="ui small image">
+                <img src="/images/wireframe/image.png">
+            </div> --}}
+
+            <div class="left aligned content article-content">
+                <form action="/scrape_articles" method="POST">
+                    <input type="hidden" name="title" value="{{this.title}}">
+                    <input type="hidden" name="url" value="{{this.url}}">
+                    <div class="header">
+                        <h3>{{this.title}}</h3>
+                    </div>
+                    <div class="description">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                    </div>
+                    <div class="extra">
+                        <button id="savebutton" type="submit" class="ui right floated inverted primary button">
+                            <i class="save icon"></i> Save Article
+                        </button>
+                        <a href="{{this.url}}" class="ui right floated blue button">
+                            <i class="linkify icon"></i> Link
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="ui fitted divider"></div>
+        {{/each}}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!--
+<div class="ui grid centered">
+    <div class="one column row">
+        <div class="column">
+            <div class="contentDiv">
+                <h1 class="ui header centered">THE BURGER SHOP</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui three column doubling stackable grid container">
+    <div class="row">
+        <div class="column">
+            <div class="contentDiv">
+                <table class="ui celled striped table newburgerTable">
+                    <tbody>
+                        {{#each burgers}} {{#unless devoured}}
+                        <tr>
+                            <td class="idTableData">{{this.ID}}</td>
+                            <td>{{this.burger_name}}</td>
+                            <td class="devourBtn">
+                                <button burgerId="{{this.ID}}" status="{{this.devoured}}" class="devourBurger ui button fluid">
+                                    <i class="times icon"></i>Devour It!</button>
+                            </td>
+                        </tr>
+                        {{/unless}} {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="column centered">
+            <div class="contentDiv">
+                <form class="ui form" action="/index" method="POST" autoComplete="off">
+                    <div class="field">
+                        <input id="burgerInput" type="text" name="burger" placeholder="Burger name">
+                    </div>
+                    <button id="submit" class="ui floated button violet centered fluid" type="submit">
+                        <i class="plus icon"></i> Add Burger</button>
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+        <div class="column">
+            <div class="contentDiv">
+                <table class="ui celled striped table devouredTable">
+                    <tbody>
+                        {{#each burgers}} {{#if devoured}}
+                        <tr>
+                            <td class="idTableData">{{this.ID}}</td>
+                            <td>{{ this.burger_name}}</td>
+                        </tr>
+                        {{/if}} {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div> --}}
