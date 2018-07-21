@@ -7,21 +7,28 @@ var Note = require('../models/Note');
 
 
 //=================================================================
-//New comment route
+//New notes route
 //=================================================================
-
-// router.get("/new", function(req, res) {
-//     // find the student with provided ID
-//     student.findById(req.params.id, function(err, student) {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             //Render show template with that student
-//             res.render("comments/new", { student: student });
-//         }
-//     });
-// });
+router.post('/articles/:id/notes', function (req, res) {
+    Article.findById(req.params.id, function (err, article) {
+        if (err) {
+            console.log(err);
+        } else {
+            Note.create(req.body, function (err, note) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(note);
+                    article.notes.push(note);
+                    article.save();
+                    res.redirect("/articles/saved");
+                    // req.flash("success", "HonorList successfully added.");
+                    // res.redirect('/scrape_articles');
+                }
+            });
+        }
+    });
+});
 
 //==============================================================
 //CREATE - Add new comments to DB

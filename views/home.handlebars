@@ -5,29 +5,36 @@
 
     </div>
 
+    {{!--
     <div class="ui items">
         {{#each data}}
         <div class="item">
-            {{!--
+
             <div class="ui small image">
-                <img src="/images/wireframe/image.png">
-            </div> --}}
+                <img src="{{this.img}}">
+            </div>
 
             <div class="left aligned content article-content">
-                <form action="/scrape_articles" method="POST">
+                <form id="articleForm" action="/scrape_articles">
                     <input type="hidden" name="title" value="{{this.title}}">
                     <input type="hidden" name="url" value="{{this.url}}">
+                    <input type="hidden" name="img" value="{{this.img}}">
+                    <input type="hidden" name="writer" value="{{this.writer}}">
+                    <input type="hidden" name="summary" value="{{this.summary}}">
                     <div class="header">
                         <h3>{{this.title}}</h3>
                     </div>
                     <div class="description">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                        <p>{{this.summary}}</p>
+                    </div>
+                    <div class="description">
+                        <p>{{this.writer}}</p>
                     </div>
                     <div class="extra">
-                        <button id="savebutton" type="submit" class="ui right floated inverted primary button">
+                        <button type="submit" class="ui right floated inverted primary button saveButton">
                             <i class="save icon"></i> Save Article
                         </button>
-                        <a href="{{this.url}}" class="ui right floated blue button">
+                        <a href="{{this.url}}" target="_blank" class="ui right floated blue button">
                             <i class="linkify icon"></i> Link
                         </a>
                     </div>
@@ -35,6 +42,41 @@
             </div>
         </div>
         <div class="ui fitted divider"></div>
+        {{/each}}
+
+    </div> --}}
+
+
+
+
+    <div class="ui divided items">
+        {{#each data}}
+        <div class="item">
+            <div class="image">
+                <img src="{{this.img}}">
+            </div>
+            <div class="content">
+                <form id="articleForm" action="/scrape_articles">
+                    <input type="hidden" name="title" value="{{this.title}}">
+                    <input type="hidden" name="url" value="{{this.url}}">
+                    <input type="hidden" name="img" value="{{this.img}}">
+                    <input type="hidden" name="writer" value="{{this.writer}}">
+                    <input type="hidden" name="summary" value="{{this.summary}}">
+                    <h2><a href="{{this.url}}" target="_blank" class="header">{{this.title}}</a></h2>
+                    <div class="meta">
+                        <span class="cinema">{{this.writer}}</span>
+                    </div>
+                    <div class="description">
+                        <p>{{this.summary}}</p>
+                    </div>
+                    <div class="extra">
+                        <button type="submit" class="ui right floated inverted primary button saveButton">
+                            <i class="save icon"></i> Save Article
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         {{/each}}
 
     </div>

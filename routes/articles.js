@@ -14,7 +14,7 @@ router.get('/scrape_articles', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log('This is scrapperdata articular line 53  ' + JSON.stringify(data));
+            // console.log('This is scrapperdata articular line 53  ' + JSON.stringify(data));
             res.render("home", {
                 data: data
             });
@@ -27,7 +27,6 @@ router.get('/scrape_articles', function (req, res) {
 //Route to add/save news article to user
 //==============================================
 router.post('/scrape_articles', function (req, res) {
-    console.log(req.body);
     User.findById(req.user._id, function (err, user) {
         if (err) {
             console.log(err);
@@ -36,9 +35,10 @@ router.post('/scrape_articles', function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(article);
+                    // console.log(article);
                     user.articles.push(article);
                     user.save();
+                    res.end();
                     // req.flash("success", "HonorList successfully added.");
                     // res.redirect('/scrape_articles');
                 }
@@ -52,17 +52,8 @@ router.post('/scrape_articles', function (req, res) {
 // Route to show all user articles
 // ==============================================
 router.get("/articles/saved", function (req, res) {
-    User.findById(req.user._id).populate('articles'
-    //     {
-    //     path: 'articles',
-    //     options: {
-    //         sort: {
-    //             'gpa': -1
-    //         }
-    //     }
-    // }
-).exec(function (err, user) {
-        console.log(user.articles);
+    User.findById(req.user._id).populate('articles').exec(function (err, user) {
+        // console.log(user.articles);
         if (err) {
             console.log(err);
         } else {
@@ -78,20 +69,15 @@ router.get("/articles/saved", function (req, res) {
 
 
 //==============================================
-//Route to show Article details form 
+//Route to show Article notes form 
 //==============================================
-router.get('/schools/:school_id/under_roll/:list_id/Articles/:id', function (req, res) {
-    Article.findById(req.params.id).populate('comments').exec(function (err, Article) {
-        // console.log("\n\n"+Article.comments);
+router.get("/articles/saved/:id", function (req, res) {
+    Article.findById(req.params.id, function (err, foundArticle) {
+        // console.log(req.params.id);
         if (err) {
             console.log(err);
         } else {
-            res.render("Articles/Article_detail", {
-                comments: Article.comments,
-                Article: Article,
-                school_id: req.params.school_id,
-                list_id: req.params.list_id
-            });
+            res.json(foundArticle);
         }
     });
 });
@@ -100,17 +86,17 @@ router.get('/schools/:school_id/under_roll/:list_id/Articles/:id', function (req
 //==============================================
 //Route to show an school editable details form 
 //==============================================
-router.get('/Article/:id/edit', function (req, res) {
-    School.findById(req.params.id, function (err, school) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("schools/edit", {
-                school: school
-            });
-        }
-    });
-});
+// router.get('/Article/:id/edit', function (req, res) {
+//     School.findById(req.params.id, function (err, school) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.render("schools/edit", {
+//                 school: school
+//             });
+//         }
+//     });
+// });
 
 
 //==============================================
@@ -127,19 +113,19 @@ router.get('/Article/:id/edit', function (req, res) {
 //     });
 // });
 
-//==============================================
-//Route to delete an school
-//==============================================
-// router.delete('/schools/:id', function (req, res) {
-//     School.findByIdAndRemove(req.params.id, function (err, school) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             // req.flash("success", "School successfully updated");
-//             res.redirect("/schools/");
-//         }
-//     });
-// });
+// ==============================================
+// Route to delete an article
+// ==============================================
+router.delete('/articles/delete/:id', function (req, res) {
+    Article.findByIdAndRemove(req.params.id, function (err, article) {
+        if (err) {
+            console.log(err);
+        } else {
+            // req.flash("success", "School successfully updated");
+            res.redirect('/articles/saved');
+        }
+    });
+});
 
 
 

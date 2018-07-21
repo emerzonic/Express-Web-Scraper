@@ -8,34 +8,88 @@
     <div class="ui items">
         {{#each articles}}
         <div class="item">
-            {{!--
+            
             <div class="ui small image">
-                <img src="/images/wireframe/image.png">
-            </div> --}}
-
+                <img src="{{this.img}}">
+            </div>
             <div class="left aligned content article-content">
-                <form action="/scrape_articles" method="POST">
-                    <input type="hidden" name="title" value="{{this.title}}">
-                    <input type="hidden" name="link" value="{{this.url}}">
-                    <div class="header">
-                        <h3>{{this.title}}</h3>
-                    </div>
-                    <div class="description">
-                        <p></p>
-                    </div>
-                    <div class="extra">
-                        <button type="submit" class="ui right floated inverted primary button">
-                            <i class="pencil alternate icon"></i> Add Notes
-                        </button>
-                        <a href="{{this.url}}" class="ui right floated blue button">
-                            <i class="linkify icon"></i> Link
-                        </a>
-                    </div>
-                </form>
+                <div class="header">
+                    <h3>{{this.title}}</h3>
+                </div>
+                <div class="description">
+                    <p>{{this.summary}}</p>
+                </div>
+                 <div class="description">
+                    <p>{{this.writer}}</p>
+                </div>
+                <div class="extra">
+                    <button id="{{this._id}}" class="ui right floated red icon button removeArticleButton">
+                        <i class="trash alternate icon"></i>
+                    </button>
+                    <button id="{{this._id}}" class="ui right floated inverted primary button addNotesButton">
+                        <i class="pencil alternate icon"></i> Add Notes
+                    </button>
+                    <a href="{{this.url}}" target="_blank" class="ui right floated blue button">
+                        <i class="linkify icon"></i> Link
+                    </a>
+                </div>
             </div>
         </div>
         <div class="ui inverted fitted divider"></div>
         {{/each}}
 
+    </div>
+</div>
+<div class="ui longer modal">
+    <div class="header">Article Notes</div>
+    <div  class="description">
+        <h3 id="articleTitle"></h3>
+    </div>
+    <div class="scrolling content">
+        <div class="ui comments">
+            <div class="comment">
+                <div class="content">
+                    {{#each articule.notes}}
+                    <div class="metadata">
+                        <span class="date">Today at 5:42PM</span>
+                    </div>
+                    <div class="text">
+                        {{foundArticule._id}} {{foundArticule._id}} Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                        a galley of type and scrambled it to make a type specimen book.
+                    </div>
+                    <div class="actions">
+                        <a class="reply ui yellow button">Edit</a>
+                        <a class="save ui red button">Delete</a>
+                    </div>
+                    {{/each}}
+                    <form id="notesForm" class="ui reply form" method="POST">
+                        <div class="field">
+                            <textarea id="notes" name="text"></textarea>
+                        </div>
+                        <div class="ui blue deny labeled icon button">
+                            <i class="undo alternate icon"></i> Cancel
+                        </div>
+                        <button  type="submit" class="ui positive labeled submit icon button">
+                            <i class="icon edit"></i> Submit Note
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="ui mini modal">
+    <div class="header">Info</div>
+    <div class="content">
+        <p>Do you really want to remove this article?</p>
+    </div>
+    <div class="actions">
+        <div class="ui cancel blue button">No</div>
+        <form  id="deleteForm" method="post">
+            <button type="submit" id="delete" class="ui approve red button">Yes</button>
+        </form>
     </div>
 </div>

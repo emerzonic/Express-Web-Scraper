@@ -4,6 +4,7 @@ var articleSchema = new mongoose.Schema({
   'title': { type: String },
   'summary': { type: String },
   'url': { type: String },
+  'img': { type: String },
   'writer': { type: String },
   'createdAt': { type: Date, default: Date.now },
   'updatedAt': { type: Date, default: Date.now },
@@ -14,7 +15,6 @@ var articleSchema = new mongoose.Schema({
   }
 ]
 });
-
 
 
 module.exports = mongoose.model('Article', articleSchema);
