@@ -29,14 +29,12 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
   secret: "god is good",
   resave: false,
   saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -51,7 +49,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-//SET UP APP TO USE CONTROLLERS/ROUTES
+//Set up app to use routes
 app.use(articles);
 app.use(notes);
 app.use(index);
