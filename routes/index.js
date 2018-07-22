@@ -51,11 +51,10 @@ router.post("/signup", function (req, res) {
     User.register(newUser, req.body.password, function (err, user) {
         console.log(user);
         if (err) {
-            // req.flash("error", err.message);
+            req.flash("error", err.message);
             return res.redirect("/signup");
         } else {
             passport.authenticate("local")(req, res, function () {
-                // req.flash("success","Welcome to The BulletinBoard.Org, " + user.username);
                 res.redirect("/home");
             });
         }
