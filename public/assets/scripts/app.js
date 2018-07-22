@@ -12,7 +12,7 @@ $(document).on("submit", "#articleForm", function (event) {
   };
 
   var requestUrl = $(this).attr("action");
-  // Send the data using post
+  // Send the article to be created
   $.ajax({
       method: "POST",
       url: requestUrl,
@@ -28,7 +28,7 @@ $(document).on("submit", "#articleForm", function (event) {
 
 
 //==================================================================
-//GET THE ARTICLE ID AND IT OVER TO THE DELETE FORM URL IN THE MODAL
+//GET THE ARTICLE ID AND SEND IT OVER TO THE DELETE FORM URL IN THE MODAL
 //==================================================================
 $(".removeArticleButton").click(function () {
   var articleId = $(this).attr('id');
@@ -49,11 +49,11 @@ $(function () {
 });
 
 
-$('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  })
-;
+$(function () {
+  $('.message .close')
+    .on('click', function () {
+      $(this)
+        .closest('.message')
+        .transition('fade');
+    });
+});

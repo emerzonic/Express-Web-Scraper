@@ -43,7 +43,6 @@ router.post("/signup", function (req, res) {
         username: req.body.username
     });
     User.register(newUser, req.body.password, function (err, user) {
-        console.log(user);
         if (err) {
             req.flash("error", err.message);
             return res.redirect("/signup");

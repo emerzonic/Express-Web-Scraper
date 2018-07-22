@@ -1,18 +1,18 @@
 var methodOverride = require('method-override'),
-LocalStrategy = require("passport-local"),
-bodyParser = require('body-parser'),
-articles = require('./routes/articles'),
-mongoose = require('mongoose'),
-passport = require('passport'),
-express = require("express"),  
-exphbs = require('express-handlebars'),
-flash = require('connect-flash-plus'),
-notes = require('./routes/notes'),
-index = require('./routes/index'),
-User = require('./models/User');
+  LocalStrategy = require("passport-local"),
+  bodyParser = require('body-parser'),
+  articles = require('./routes/articles'),
+  mongoose = require('mongoose'),
+  passport = require('passport'),
+  express = require("express"),
+  exphbs = require('express-handlebars'),
+  flash = require('connect-flash-plus'),
+  notes = require('./routes/notes'),
+  index = require('./routes/index'),
+  User = require('./models/User');
 
 var app = express();
- 
+
 //SETUP APP TO USE PACKAGES
 mongoose.connect("mongodb://localhost/web-scrapperDB");
 app.use(bodyParser.urlencoded({
@@ -25,9 +25,9 @@ app.use(flash());
 
 //Handlebars config
 app.engine("handlebars", exphbs({
-    defaultLayout: "main"
-  }));
-  app.set("view engine", "handlebars");
+  defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
 
 
 //PASSPORT CONFIGURATION
@@ -59,6 +59,6 @@ app.use(index);
 // App PORT setting
 var PORT = process.env.PORT || 8080;
 // Application server.
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-  });
+app.listen(PORT, function () {
+  console.log("App listening on PORT " + PORT);
+});

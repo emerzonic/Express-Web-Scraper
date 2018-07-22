@@ -14,6 +14,7 @@ router.get('/scrape_articles', function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            req.flash("info","Please signin to save articles.");
             res.render("home", {
                 data: data,
             });
