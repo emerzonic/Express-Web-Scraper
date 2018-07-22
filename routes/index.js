@@ -1,10 +1,7 @@
-var express = require('express');
 var passport = require('passport');
-
-var router = express.Router();
+var express = require('express');
 var User = require('../models/User');
-var Articles = require('../models/Article');
-var Notes = require('../models/Note');
+var router = express.Router();
 
 
 //==============================================
@@ -13,7 +10,6 @@ var Notes = require('../models/Note');
 router.get('/', function (req, res) {
     res.redirect('/home');
 });
-
 
 //==============================================
 // routes  to home page
@@ -28,7 +24,6 @@ router.get('/home', function (req, res) {
 router.get('/signup', function (req, res) {
     res.render('register');
 });
-
 
 //==============================================
 //Route to home page
