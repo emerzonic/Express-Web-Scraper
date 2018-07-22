@@ -9,6 +9,6 @@ middleware.isLoggedIn = function (req, res, next) {
     req.flash("info","Please login to perform that action.");
     res.redirect("/signin");
 };
-']'
+
 
 module.exports = middleware;
