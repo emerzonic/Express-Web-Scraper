@@ -47,3 +47,13 @@ $(function () {
     closable: true
   });
 });
+
+
+$('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;

@@ -21,11 +21,9 @@
                         <p>{{this.summary}}</p>
                     </div>
                     <div class="extra">
-                        {{!-- <form action="/articles/{{this._id}}?_method=DELETE" method="POST"> --}}
                         <button id="{{this._id}}" type="submit" class="ui right floated red icon button removeArticleButton">
                             <i class="trash alternate icon"></i>
                         </button>
-                        {{!-- </form> --}}
                         <a href="/articles/saved/{{this._id}}" class="ui right floated inverted primary button">
                             <i class="pencil alternate icon"></i> Article Notes
                         </a>

@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
 var Article = require('../models/Article');
 var Note = require('../models/Note');
+var middleware = require('../middleware/index');
+
 
 
 //=================================================================
-//New notes route
+//Create new notes route
 //=================================================================
-router.post('/articles/:id', function (req, res) {
+router.post('/articles/:id', middleware.isLoggedIn, function (req, res) {
     Article.findById(req.params.id).populate('notes').exec( function (err, article) {
         if (err) {
             console.log(err);
@@ -27,9 +28,9 @@ router.post('/articles/:id', function (req, res) {
 });
 
 //=================================================================
-//note destroy route
+//Destroy notes route
 //=================================================================
-router.delete("/articles/:article_id/note/:id", function(req, res){
+router.delete("/articles/:article_id/note/:id", middleware.isLoggedIn, function(req, res){
     Note.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
             console.log(err);

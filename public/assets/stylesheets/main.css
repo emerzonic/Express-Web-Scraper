@@ -108,3 +108,7 @@ h3.ui.header {
 .ui.modal > .actions {
     background: rgba(217, 230, 235, 0.931);
 }
+
+.ui.comments .comment .text {
+    font-size: 1.3em;
+}

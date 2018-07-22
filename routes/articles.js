@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var Article = require('../models/Article');
-var Notes = require('../models/Note');
 var webScrapper = require('../scraper/scraper');
 var middleware = require('../middleware/index');
 
@@ -17,7 +16,6 @@ router.get('/scrape_articles', function (req, res) {
         } else {
             res.render("home", {
                 data: data,
-                currentUser:req.user
             });
         }
     });
@@ -54,26 +52,30 @@ router.get("/articles/saved", middleware.isLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("articles", {
-                articles: user.articles
-            });
+            if (user.articles.length < 1) {
+                req.flash("info","You do not any save articles.");
+                res.redirect("/home");
+            } else {
+                res.render("articles", {
+                    articles: user.articles
+                });
+            }
         }
     });
-
 });
 
 
 //==============================================
 //Route to find and send one article
 //==============================================
-router.get("/articles/saved/:id", function (req, res) {
+router.get("/articles/saved/:id", middleware.isLoggedIn, function (req, res) {
     Article.findById(req.params.id).populate('notes').exec(function (err, foundArticle) {
         if (err) {
             console.log(err);
         } else {
-            res.render('notes',{
-                article:foundArticle,
-                notes:foundArticle.notes
+            res.render('notes', {
+                article: foundArticle,
+                notes: foundArticle.notes
             });
         }
     });
@@ -82,7 +84,7 @@ router.get("/articles/saved/:id", function (req, res) {
 // ==============================================
 // Route to delete an article
 // ==============================================
-router.delete('/:id', function (req, res) {
+router.delete('/:id', middleware.isLoggedIn, function (req, res) {
     Article.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             console.log(err);

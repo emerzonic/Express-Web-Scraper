@@ -4,6 +4,7 @@ methodOverride = require('method-override'),
 mongoose = require('mongoose'),
 passport = require('passport'),
 LocalStrategy = require("passport-local"),
+flash = require('connect-flash-plus'),
 exphbs = require('express-handlebars'),
 articles = require('./routes/articles'),
 notes = require('./routes/notes'),
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 //Handlebars config
 app.engine("handlebars", exphbs({
@@ -44,6 +46,8 @@ passport.deserializeUser(User.deserializeUser());
 //Track the current user
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
+  res.locals.info = req.flash("info");
+  res.locals.error = req.flash("error");
   next();
 });
 
