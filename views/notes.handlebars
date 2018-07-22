@@ -1,0 +1,70 @@
+<div class="ui container home-container sticky">
+    <div class="ui piled blue segment">
+        <h1 class="ui header centered">Add Articles Notes</h1>
+    </div>
+
+    <div class="header">Article Notes</div>
+    <div class="description">
+        <h3 id="articleTitle"></h3>
+    </div>
+    {{notes}}
+    <div class="scrolling centered content">
+        {{#each notes}}
+        <div class="ui comments">
+            <h3 class="ui dividing header"></h3>
+            <div class="comment">
+                <div class="content">
+                    <div class="metadata">
+                        <span class="date">{{this.creatAt}}</span>
+                    </div>
+                    <div class="text">
+                        <p>{{this.text}}</p>
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <form action="/articles/{{article._id}}" class="ui reply form" method="POST">
+            <div class="field">
+                <textarea name="text"></textarea>
+            </div>
+            <button type="submit" class="ui blue labeled submit icon button">
+                <i class="icon edit"></i> Submit
+            </button>
+        </form>
+    </div>
+    {{!--
+    <div class="ui comments">
+        <div class="comment">
+            <div id="commentDiv" class="content">
+                {{#each notes}}
+                <div class="metadata">
+                    <span class="date">Created On {{notes.createAt}}</span>
+                </div>
+                <div class="text">
+                    <p>{{notes.text}}</p>
+                </div>
+                <div class="actions">
+                    <a class="reply ui yellow button">Edit</a>
+                    <a class="save ui red button">Delete</a>
+                </div>
+                {{/each}}
+                <form id="notesForm" class="ui reply form" method="POST">
+                    <div class="field">
+                        <textarea id="notes" name="text"></textarea>
+                    </div>
+                    <div class="ui blue deny labeled icon button">
+                        <i class="undo alternate icon"></i> Cancel
+                    </div>
+                    <button type="submit" class="ui positive labeled submit icon button">
+                        <i class="icon edit"></i> Submit Note
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> --}}
+</div>

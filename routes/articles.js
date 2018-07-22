@@ -4,6 +4,7 @@ var User = require('../models/User');
 var Article = require('../models/Article');
 var Notes = require('../models/Note');
 var webScrapper = require('../scraper/scraper');
+var middleware = require('../middleware/index');
 
 
 //==============================================
@@ -16,7 +17,8 @@ router.get('/scrape_articles', function (req, res) {
         } else {
             // console.log('This is scrapperdata articular line 53  ' + JSON.stringify(data));
             res.render("home", {
-                data: data
+                data: data,
+                currentUser:req.user
             });
         }
     });
@@ -26,7 +28,7 @@ router.get('/scrape_articles', function (req, res) {
 //==============================================
 //Route to add/save news article to user
 //==============================================
-router.post('/scrape_articles', function (req, res) {
+router.post('/scrape_articles', middleware.isLoggedIn, function (req, res) {
     User.findById(req.user._id, function (err, user) {
         if (err) {
             console.log(err);
@@ -35,12 +37,10 @@ router.post('/scrape_articles', function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    // console.log(article);
                     user.articles.push(article);
                     user.save();
                     res.end();
                     // req.flash("success", "HonorList successfully added.");
-                    // res.redirect('/scrape_articles');
                 }
             });
         }
@@ -51,12 +51,12 @@ router.post('/scrape_articles', function (req, res) {
 // ==============================================
 // Route to show all user articles
 // ==============================================
-router.get("/articles/saved", function (req, res) {
+router.get("/articles/saved", middleware.isLoggedIn, function (req, res) {
     User.findById(req.user._id).populate('articles').exec(function (err, user) {
-        // console.log(user.articles);
         if (err) {
             console.log(err);
         } else {
+            console.log(user.articles);
             res.render("articles", {
                 articles: user.articles
             });
@@ -66,58 +66,28 @@ router.get("/articles/saved", function (req, res) {
 });
 
 
-
-
 //==============================================
-//Route to show Article notes form 
+//Route to find and send one article
 //==============================================
-router.get("/articles/saved/:id", function (req, res) {
-    Article.findById(req.params.id, function (err, foundArticle) {
-        // console.log(req.params.id);
+router.get("/articles/:id", function (req, res) {
+    Article.findById(req.params.id).populate('notes').exec(function (err, foundArticle) {
         if (err) {
             console.log(err);
         } else {
-            res.json(foundArticle);
+            res.render('notes',{
+                article:foundArticle,
+                notes:foundArticle.notes
+            });
         }
     });
 });
-
-
-//==============================================
-//Route to show an school editable details form 
-//==============================================
-// router.get('/Article/:id/edit', function (req, res) {
-//     School.findById(req.params.id, function (err, school) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.render("schools/edit", {
-//                 school: school
-//             });
-//         }
-//     });
-// });
-
-
-//==============================================
-//Route to edit schools
-//==============================================
-// router.put('/schools/:id', function (req, res) {
-//     School.findByIdAndUpdate(req.params.id, req.body, function (err, school) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             // req.flash("success", "School successfully updated");
-//             res.redirect("/schools/" + req.params.id);
-//         }
-//     });
-// });
 
 // ==============================================
 // Route to delete an article
 // ==============================================
 router.delete('/articles/delete/:id', function (req, res) {
-    Article.findByIdAndRemove(req.params.id, function (err, article) {
+    console.log(req.params.id);
+    Article.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             console.log(err);
         } else {
@@ -126,7 +96,6 @@ router.delete('/articles/delete/:id', function (req, res) {
         }
     });
 });
-
 
 
 module.exports = router;

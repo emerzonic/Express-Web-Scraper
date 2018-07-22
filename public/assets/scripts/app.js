@@ -2,9 +2,7 @@
 //SEND REQUEST TO ADD ARTICLE TO DATABASE
 //====================================================
 $(document).on("submit", "#articleForm", function (event) {
-  // Stop form from submitting normally
   event.preventDefault();
-  // Get some values from elements on the page:
   var article = {
     title: $(this).find("input[name='title']").val(),
     img: $(this).find("input[name='img']").val(),
@@ -24,18 +22,17 @@ $(document).on("submit", "#articleForm", function (event) {
       $(this)
         .find(".saveButton")
         .text('Article SAVED!')
-        .removeClass('inverted saveButton'); //remove the savebutton class and change button
+        .removeClass('inverted saveButton'); //remove the savebutton class and change button color
     });
 });
-
 
 //====================================================
 //SEND REQUEST TO GET ONE ARTICLE FROM DATABASE
 //====================================================
 $(document).on("click", ".addNotesButton", function () {
-  // Get some id from elements on the page:
+  // Get the id for the clicked article:
   var articuleId = $(this).attr('id');
-  // Send the data using post
+  //Send the data using post
   $.ajax({
       method: "GET",
       url: "/articles/saved/" + articuleId,
@@ -47,43 +44,10 @@ $(document).on("click", ".addNotesButton", function () {
     });
 });
 
-
-
-// ====================================================
-// ADD  NOTES TO ARTICLE
-// ====================================================
-// $(document).on("submit", "#notesForm", function () {
-  // Stop form from submitting normally
-  // event.preventDefault();
-  // Get some values from elements on the page:
-  // var articuleId = $(this).find(".submit").attr('id');
-  // // var notes = $("#notes").val();
-  // var notes = $(this).find("#notes").val();
-  // // Send the data using post
-  // console.log("id " + articuleId);
-  // console.log("notes " + notes);
-  // $("#notes").val("");
-
-
-
-// $.ajax({
-//     method: "POST",
-//     url: requestUrl,
-//     data: article
-//   })
-//   .done(() => {
-//     $(this)
-//       .find(".saveButton")
-//       .text('Article SAVED!')
-//       .removeClass('inverted saveButton'); //remove the savebutton class and change button
-//   });
-// });
-
 //====================================================
 //DELETE ARTICLE
 //====================================================
 $(document).on("click", ".removeArticleButton", function (event) {
-  // Get some id from elements on the page:
   var articuleId = $(this).attr('id');
   // Send the data using post
   $.ajax({
@@ -91,17 +55,28 @@ $(document).on("click", ".removeArticleButton", function (event) {
       url: "/articles/saved/" + articuleId,
     })
     .done(function (articleToDelete) {
-      console.log(articleToDelete);
+      articleToDelete.notes.forEach(function(note) {
+        var $notesContents = $ `<div class="metadata">
+      <span class="date">Created On ${note.createAt}</span>
+  </div>
+  <div class="text">
+     <p>${note.text}</p>
+  </div>
+  <div class="actions">
+      <a class="reply ui yellow button">Edit</a>
+      <a class="save ui red button">Delete</a>
+  </div>`;
+
+  $('#commentDiv').prepend($notesContents);
+});
+
+      console.log(articleToDelete.notes);
       $("#deleteForm").attr("action", `/articles/delete/${articleToDelete._id}?_method=DELETE`); //remove the savebutton class and change button
     });
 });
 
 
-
-
-
-
-// home page sign up modal
+//large notes modal
 $(function () {
   $(".addNotesButton").click(function () {
     $(".longer").modal('show');
@@ -111,6 +86,8 @@ $(function () {
   });
 });
 
+
+// small delete article modal
 $(function () {
   $(".removeArticleButton").click(function () {
     $('.mini')

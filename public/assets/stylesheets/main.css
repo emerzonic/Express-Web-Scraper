@@ -1,5 +1,3 @@
-
-
 body{
     background-image: url("https://images.unsplash.com/photo-1529243856184-fd5465488984?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95834c9e01a9ff2a5a61c79fc92a180f&auto=format&fit=crop&w=1969&q=80");
     background-size: cover;
@@ -22,12 +20,17 @@ body{
 .home-container{
     background: transparent;
     background: rgba(217, 230, 235, 0.931);
+    height: auto;
     
 }
 
 .article-content{
     color:rgb(54, 53, 53);
     padding: 10px;
+}
+
+.ui.divided.items>.item {
+    padding: 1em;
 }
 
 .article-content .header{
@@ -51,7 +54,6 @@ body{
     color: black;
     font-size: 10rem;
 }
-
 
 
 /* menu left */

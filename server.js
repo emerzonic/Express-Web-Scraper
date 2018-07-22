@@ -10,13 +10,8 @@ notes = require('./routes/notes'),
 index = require('./routes/index'),
 User = require('./models/User');
 
-
-
-// var middleware = require('./middleware/index');
-// var mailer = require('./mailer/email');
 var app = express();
  
-
 //SETUP APP TO USE PACKAGES
 mongoose.connect("mongodb://localhost/web-scrapperDB");
 app.use(bodyParser.urlencoded({
