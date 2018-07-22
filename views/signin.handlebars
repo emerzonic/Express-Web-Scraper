@@ -3,16 +3,21 @@
         <div class="column">
             <div class="ui inverted segment">
                 {{#if info}}
-                    <div class="ui compact blue message">
-                         <i class="close icon"></i>
-                        <p>{{info}}</p>
-                    </div>
-                    {{/if}} {{#if error}}
-                    <div class="ui compact negative message">
-                         <i class="close icon"></i>
-                        <p>{{error}}</p>
-                    </div>
-                    {{/if}}
+                <div class="ui compact blue message">
+                    <i class="close icon"></i>
+                    <p>{{info}}</p>
+                </div>
+                {{/if}} {{#if error}}
+                <div class="ui compact red message">
+                    <i class="close icon"></i>
+                    <p>{{error}}</p>
+                </div>
+                {{/if}} {{#if success}}
+                <div class="ui compact green message">
+                    <i class="close icon"></i>
+                    <p>{{success}}</p>
+                </div>
+                {{/if}}
                 <form action="/signin" class="ui inverted form" method="POST">
                     <div class="required field">
                         <label>Username</label>

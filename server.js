@@ -13,15 +13,15 @@ var methodOverride = require('method-override'),
 
 var app = express();
 
-
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// If deployed, use the deployed database. Otherwise use the local  database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/web-scrapperDB";
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI);
 
 //SETUP APP TO USE PACKAGES
-mongoose.connect("mongodb://localhost/web-scrapperDB");
+// mongoose.connect("mongodb://localhost/web-scrapperDB");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -53,6 +53,7 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.info = req.flash("info");
   res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
