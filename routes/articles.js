@@ -15,7 +15,6 @@ router.get('/scrape_articles', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            // console.log('This is scrapperdata articular line 53  ' + JSON.stringify(data));
             res.render("home", {
                 data: data,
                 currentUser:req.user
@@ -40,7 +39,6 @@ router.post('/scrape_articles', middleware.isLoggedIn, function (req, res) {
                     user.articles.push(article);
                     user.save();
                     res.end();
-                    // req.flash("success", "HonorList successfully added.");
                 }
             });
         }
@@ -56,7 +54,6 @@ router.get("/articles/saved", middleware.isLoggedIn, function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(user.articles);
             res.render("articles", {
                 articles: user.articles
             });
@@ -69,7 +66,7 @@ router.get("/articles/saved", middleware.isLoggedIn, function (req, res) {
 //==============================================
 //Route to find and send one article
 //==============================================
-router.get("/articles/:id", function (req, res) {
+router.get("/articles/saved/:id", function (req, res) {
     Article.findById(req.params.id).populate('notes').exec(function (err, foundArticle) {
         if (err) {
             console.log(err);
@@ -85,13 +82,11 @@ router.get("/articles/:id", function (req, res) {
 // ==============================================
 // Route to delete an article
 // ==============================================
-router.delete('/articles/delete/:id', function (req, res) {
-    console.log(req.params.id);
+router.delete('/:id', function (req, res) {
     Article.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             console.log(err);
         } else {
-            // req.flash("success", "School successfully updated");
             res.redirect('/articles/saved');
         }
     });

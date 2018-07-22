@@ -10,18 +10,24 @@ body{
     margin: -.5em 0.6em;
 }
 
-
 /* form header */
 .ui.header {
     /* text-transform: uppercase; */
     color: rgb(255, 255, 255);
 }
 
+h1.ui.header {
+    font-size: 3rem;
+}
+
+h3.ui.header {
+    font-size: 1.5rem;
+}
+
 .home-container{
     background: transparent;
     background: rgba(217, 230, 235, 0.931);
     height: auto;
-    
 }
 
 .article-content{
@@ -86,5 +92,19 @@ body{
 /* menu home style */
 .ui.secondary.inverted.pointing.menu .active.item:hover {
     border-color: #359be8;
-    /* color: #fff; */
+}
+
+/* confirmation modal styles */
+.ui.modal>.header {
+    background: #359be8;
+    padding: 1.25rem 1.5rem;
+    color: rgba(0,0,0,.85);
+}
+
+.ui.modal > .content {
+    background: rgba(217, 230, 235, 0.931);
+}
+
+.ui.modal > .actions {
+    background: rgba(217, 230, 235, 0.931);
 }

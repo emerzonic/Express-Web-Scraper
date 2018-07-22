@@ -9,7 +9,7 @@ var Note = require('../models/Note');
 //New notes route
 //=================================================================
 router.post('/articles/:id', function (req, res) {
-    Article.findById(req.params.id).populate('notes').exec(err, article) {
+    Article.findById(req.params.id).populate('notes').exec( function (err, article) {
         if (err) {
             console.log(err);
         } else {
@@ -19,30 +19,24 @@ router.post('/articles/:id', function (req, res) {
                 } else {
                     article.notes.push(note);
                     article.save();
-                    res.render('notes',{
-                        article:article,
-                        notes:article.notes
-                    });
-                    // req.flash("success", "HonorList successfully added.");
-                    // res.redirect('/scrape_articles');
+                    res.redirect('/articles/saved/'+ req.params.id);                    
                 }
             });
         }
     });
 });
 
-
-//comment destroy route
-router.delete("/:id", function(req, res){
-    //find Comment ID in DB
+//=================================================================
+//note destroy route
+//=================================================================
+router.delete("/articles/:article_id/note/:id", function(req, res){
     Note.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
-            // req.flash("error","Something went wrong.");
-            res.redirect("back");
+            console.log(err);
+            res.redirect('/articles/saved/'+ req.params.article_id);
         }
         else {
-            // req.flash("success","Comment deleted.");
-            res.end();
+            res.redirect('/articles/saved/'+ req.params.article_id);
         }
     });
 });

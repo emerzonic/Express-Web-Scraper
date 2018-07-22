@@ -6,6 +6,7 @@
   <title>Web Scraper</title>
   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.css">
   <link type="text/css" rel="stylesheet" href="/assets/stylesheets/main.css">
+
 </head>
 
 <body>
@@ -21,25 +22,24 @@
         Scrape Website
       </a>
       <div class="right item right-buttons">
-         {{#unless currentUser}}
+        {{#unless currentUser}}
         <div class="ui buttons">
           <a href="/signin" class="ui inverted button">Sign In</a>
           <div class="or"></div>
           <a href="/signup" class="ui inverted primary button">Sign Up</a>
         </div>
-        {{/unless}}
-          {{#if currentUser}}
+        {{/unless}} {{#if currentUser}}
         <a href="/logout" class="ui inverted button">Sign Out</a>
         <a href="#">
           <i class="user icon"></i> {{currentUser.firstName}}</a>
-         {{/if}}
+        {{/if}}
       </div>
     </div>
 
   </div>
 
-    {{{ body }}}
- 
+  {{{ body }}}
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.2/semantic.min.js"></script>
