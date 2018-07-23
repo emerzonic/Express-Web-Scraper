@@ -3,80 +3,49 @@
         <h1 class="ui header centered">Add Articles Notes</h1>
     </div>
 
-
     <div class="ui grid">
-        <div class="sixteen wide mobile eight wide tablet ten wide computer centered column">
-            <div class="header">Adding Article Notes to</div>
-            <div class="description">
-                <h3 id="articleTitle">{{article.title}}</h3>
-            </div>
-            <div class="scrolling centered content">
-                {{#each notes}}
-                 <h3 class="ui dividing header"></h3>
-                <div class="ui minimal comments">
-                    <div class="comment">
-                        <div class="content">
-                            <div class="metadata">
-                                <span class="date">{{this.createdAt}}</span>
-                            </div>
-                            <div class="text">
-                                <p>{{this.text}}</p>
-                            </div>
-                            <div class="actions">
-                                <form action="/articles/{{../article._id}}/note/{{this._id}}?_method=DELETE" method="POST">
-                                    <button type="submit" class="ui right floated red icon button" data-content="Clicking this button will delete this note">
-                                        <i class="trash alternate icon"></i>
-                                    </button>
-                                </form>
-                            </div>
+        <div class="sixteen wide mobile eight wide tablet ten wide computer centered column commentDiv">
+            <div class="ui segment notes-segment">
+                <div class="description">
+                    <h3 id="articleTitle">{{article.title}}</h3>
+                </div>
+                <div class="scrolling centered content">
+                    {{#each notes}}
+                    <h3 class="ui dividing header"></h3>
+                    <div class="ui minimal comments">
+                        <div class="comment">
+                            <div class="content">
+                                <div class="metadata">
+                                    <span class="date">{{this.createdAt}}</span>
+                                </div>
+                                <div class="text">
+                                    <p>{{this.text}}</p>
+                                </div>
+                                <div class="actions">
+                                    <form action="/articles/{{../article._id}}/note/{{this._id}}?_method=DELETE" method="POST">
+                                        <button type="submit" class="ui right floated red icon button" data-content="Clicking this button will delete this note">
+                                            <i class="trash alternate icon"></i>
+                                        </button>
+                                    </form>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
-                {{/each}}
                 <form action="/articles/{{article._id}}" class="ui reply form" method="POST">
                     <div class="field">
                         <textarea name="text"></textarea>
                     </div>
-                     <a href="/articles/saved" class="ui inverted blue labeled submit icon button">
+                    <a href="/articles/saved" class="ui inverted blue labeled submit icon button">
                         <i class="undo alternate icon"></i> Back to Articles
                     </a>
                     <button type="submit" class="ui blue submit button">
-                       </i> Submit
+                        </i> Submit
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    {{!--
-    <div class="ui comments">
-        <div class="comment">
-            <div id="commentDiv" class="content">
-                {{#each notes}}
-                <div class="metadata">
-                    <span class="date">Created On {{notes.createAt}}</span>
-                </div>
-                <div class="text">
-                    <p>{{notes.text}}</p>
-                </div>
-                <div class="actions">
-                    <a class="reply ui yellow button">Edit</a>
-                    <a class="save ui red button">Delete</a>
-                </div>
-                {{/each}}
-                <form id="notesForm" class="ui reply form" method="POST">
-                    <div class="field">
-                        <textarea id="notes" name="text"></textarea>
-                    </div>
-                    <div class="ui blue deny labeled icon button">
-                        <i class="undo alternate icon"></i> Cancel
-                    </div>
-                    <button type="submit" class="ui positive labeled submit icon button">
-                        <i class="icon edit"></i> Submit Note
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
 </div>
