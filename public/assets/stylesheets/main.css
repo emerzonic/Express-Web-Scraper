@@ -120,9 +120,10 @@ h3.ui.header {
 
 .commentDiv >.ui.segment {
     position: relative;
-    background: #ffffff;
+    background: #edeff0;
 }
 
 .ui.grid>.centered.column, .ui.grid>.row>.centered.column {
     margin-top: 10%;
+    margin-bottom: 10%;
 }
