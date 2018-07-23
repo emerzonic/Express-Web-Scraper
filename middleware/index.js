@@ -6,7 +6,7 @@ middleware.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    req.flash("info","Please login to access saved articles.");
+    req.flash("info","Please sign in to access saved articles.");
     res.redirect("/signin");
 };
 
