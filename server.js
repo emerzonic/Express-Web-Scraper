@@ -13,15 +13,14 @@ var methodOverride = require('method-override'),
 
 var app = express();
 
-// If deployed, use the deployed database. Otherwise use the local  database
+//MongoDB environmental veriables
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/web-scrapperDB";
 // Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
 mongoose.Promise = Promise;
+// Connect to the Mongo DB
 mongoose.connect(MONGODB_URI);
 
 //SETUP APP TO USE PACKAGES
-// mongoose.connect("mongodb://localhost/web-scrapperDB");
 app.use(bodyParser.urlencoded({
   extended: true
 }));

@@ -22,7 +22,6 @@ router.get('/scrape_articles', function (req, res) {
     });
 });
 
-
 //==============================================
 //Route to add/save news article to user
 //==============================================
@@ -43,7 +42,6 @@ router.post('/scrape_articles', middleware.isLoggedIn, function (req, res) {
         }
     });
 });
-
 
 // ==============================================
 // Route to show all user articles

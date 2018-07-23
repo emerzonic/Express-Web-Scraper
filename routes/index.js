@@ -19,23 +19,22 @@ router.get('/home', function (req, res) {
 });
 
 //==============================================
-//Route to home page
+//Route to signup page
 //==============================================
 router.get('/signup', function (req, res) {
     res.render('register');
 });
 
 //==============================================
-//Route to home page
+//Route to signin page
 //==============================================
 router.get('/signin', function (req, res) {
     res.render('signin');
 });
 
 //=======================
-//Auth ROUTES
+//Auth ROUTES - User signup
 //=======================
-//handling user sign up
 router.post("/signup", function (req, res) {
     var newUser = new User({
         firstName: req.body.first_name,
@@ -54,9 +53,8 @@ router.post("/signup", function (req, res) {
     });
 });
 
-
 //==============================================
-//Route to login user
+////Auth ROUTES - user signin
 //==============================================
 router.post("/signin", passport.authenticate("local", {
     successRedirect: "/home",

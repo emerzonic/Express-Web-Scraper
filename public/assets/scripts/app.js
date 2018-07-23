@@ -48,7 +48,7 @@ $(function () {
   });
 });
 
-
+//close feedback message 
 $(function () {
   $('.message .close')
     .on('click', function () {

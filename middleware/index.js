@@ -1,4 +1,4 @@
-//All middleware goes here
+//middleware object
 var middleware = {};
 
 //middleware: Check if user is logged in
