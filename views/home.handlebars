@@ -1,79 +1,19 @@
-<div class="ui container home-container sticky">
-
-    <div class="ui piled segment">
-        <h1 class="ui header centered">Welcome to the Tech News Web Scraper</h1>
-        <h3 class="ui header centered">Get all the latest technology news from around the world.</h3>
-        {{#if info}}
-        <div class="ui compact blue message">
+<div class="homeContainer">
+    <div class="sixteen wide column">
+        <div class="homeContent">
+            <h1 class="ui header centered">Welcome to the Tech News Web Scraper</h1>
+            <h3 class="ui header centered">Get all the latest technology news from around the world.</h3>
+            {{#if info}}
+            <div class="ui compact blue message">
+                <i class="close icon"></i>
+                <p>{{info}}</p>
+            </div>
+            {{/if}} {{#if error}}
             <i class="close icon"></i>
-            <p>{{info}}</p>
-        </div>
-        {{/if}} {{#if error}}
-        <i class="close icon"></i>
-        <div class="ui compact negative message">
-            <p>{{error}}</p>
-        </div>
-        {{/if}}
-    </div>
-
-    <div class="ui divided items">
-        {{#each data}}
-        <div class="item">
-            <div class="image">
-                <img src="{{this.img}}">
+            <div class="ui compact negative message">
+                <p>{{error}}</p>
             </div>
-            <div class="content">
-                <form id="articleForm" action="/scrape_articles">
-                    <input type="hidden" name="title" value="{{this.title}}">
-                    <input type="hidden" name="url" value="{{this.url}}">
-                    <input type="hidden" name="img" value="{{this.img}}">
-                    <input type="hidden" name="writer" value="{{this.writer}}">
-                    <input type="hidden" name="summary" value="{{this.summary}}">
-                    <h2>
-                        <a href="{{this.url}}" target="_blank" class="header">{{this.title}}</a>
-                    </h2>
-                    <div class="meta">
-                        <span class="cinema">{{this.writer}} {{currentUser.firstName}}</span>
-                    </div>
-                    <div class="description">
-                        <p>{{this.summary}}</p>
-                    </div>
-                    {{#if ../currentUser}}
-                    <div class="extra">
-                        <button type="submit" class="ui right floated inverted primary button saveButton">
-                            <i class="save icon"></i> Save Article
-                        </button>
-                    </div>
-                    {{/if}}
-                </form>
-            </div>
+            {{/if}}
         </div>
-        {{/each}}
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

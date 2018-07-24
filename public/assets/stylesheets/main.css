@@ -91,6 +91,7 @@ h3.ui.header {
 .ui.segment {
     position: relative;
     background: #359be8;
+    margin-bottom: 0;
 }
 
 /* menu home style */
@@ -135,4 +136,30 @@ h3.ui.header {
 
 .spacer{
     height: 10%;
+}
+
+
+/* .homeContent{
+    margin: 15% auto;
+} */
+
+.homeContent .ui.center.aligned.header, .ui.centered.header {
+    text-align: center;
+    color: #bcbebe;
+}
+
+
+.homeContainer{
+    margin:0;
+    height:85%;
+    background:transparent;
+    background-color: #072c46d3;
+    padding: 15% 1%;
+
+}
+
+.ui.inverted.menu .item, .ui.inverted.menu .item>a:not(.ui) {
+    background: 0 0;
+    color: rgba(144, 140, 140, 0.9);
+    font-size: 1rem;
 }

@@ -14,7 +14,7 @@ router.get('/scrape_articles', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.render("home", {
+            res.render("scraped_articles", {
                 data: data,
             });
         }
@@ -52,7 +52,7 @@ router.get("/articles/saved", middleware.isLoggedIn, function (req, res) {
         } else {
             if (user.articles.length < 1) {
                 req.flash("info","You do not have any saved articles at this time.");
-                res.redirect("/home");
+                res.redirect("/scraped_articles");
             } else {
                 res.render("articles", {
                     articles: user.articles
