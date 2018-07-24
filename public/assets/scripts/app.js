@@ -58,7 +58,7 @@ $(function () {
     });
 });
 
-//validate notes form data before submit
+//validate form data before submit
 $(function validate() {
   $('#noteForm, #sign-upForm')
     .form({
