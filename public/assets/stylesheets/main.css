@@ -1,5 +1,5 @@
 body{
-    background-image: linear-gradient(rgba(26, 26, 26, 0.5),rgba(26, 26, 26, 0.5)),url("../img//background.jpg");
+    background-image: url("../img//background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -30,6 +30,7 @@ h3.ui.header {
     background: transparent;
     background: rgba(217, 230, 235, 0.808);
     height: auto;
+    border-radius: 15px;
 }
 
 .article-content{
@@ -130,4 +131,8 @@ h3.ui.header {
 .ui.grid>.centered.column, .ui.grid>.row>.centered.column {
     margin-top: 10%;
     margin-bottom: 10%;
+}
+
+.spacer{
+    height: 10%;
 }
