@@ -1,7 +1,13 @@
 <div class="ui container home-container sticky">
     <div class="ui piled blue segment">
         <h1 class="ui header centered">Saved Articles</h1>
-        <h3 class="ui header centered">These are your saved articles</h3>
+        <h3 class="ui header centered">You saved article should display below.</h3>
+        {{#if info}}
+        <div class="ui compact blue message">
+            <i class="close icon"></i>
+            <p>{{info}}</p>
+        </div>
+        {{/if}}
     </div>
 
     <div class="ui divided items">
@@ -11,23 +17,23 @@
                 <img src="{{this.img}}">
             </div>
             <div class="content">
-                    <h2>
-                        <a href="{{this.url}}" target="_blank" class="header">{{this.title}}</a>
-                    </h2>
-                    <div class="meta">
-                        <span class="cinema">{{this.writer}}</span>
-                    </div>
-                    <div class="description">
-                        <p>{{this.summary}}</p>
-                    </div>
-                    <div class="extra">
-                        <button id="{{this._id}}" type="submit" class="ui right floated red icon button removeArticleButton">
-                            <i class="trash alternate icon"></i>
-                        </button>
-                        <a href="/articles/saved/{{this._id}}" class="ui right floated inverted primary button">
-                            <i class="pencil alternate icon"></i> Article Notes
-                        </a>
-                    </div>
+                <h2>
+                    <a href="{{this.url}}" target="_blank" class="header">{{this.title}}</a>
+                </h2>
+                <div class="meta">
+                    <span class="cinema">{{this.writer}}</span>
+                </div>
+                <div class="description">
+                    <p>{{this.summary}}</p>
+                </div>
+                <div class="extra">
+                    <button id="{{this._id}}" type="submit" class="ui right floated red icon button removeArticleButton">
+                        <i class="trash alternate icon"></i>
+                    </button>
+                    <a href="/articles/saved/{{this._id}}" class="ui right floated inverted primary button">
+                        <i class="pencil alternate icon"></i> Article Notes
+                    </a>
+                </div>
             </div>
         </div>
         {{/each}}

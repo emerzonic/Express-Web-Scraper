@@ -34,7 +34,7 @@
                     </div>
                     {{/each}}
                 </div>
-                <form action="/articles/{{article._id}}" class="ui reply form" method="POST">
+                <form action="/articles/{{article._id}}" class="ui reply form" id="noteForm" method="POST">
                     <div class="field">
                         <textarea name="text"></textarea>
                     </div>
@@ -44,6 +44,7 @@
                     <button type="submit" class="ui blue submit button">
                         </i> Submit
                     </button>
+                    <div class="ui error message"></div>
                 </form>
             </div>
         </div>

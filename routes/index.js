@@ -47,6 +47,7 @@ router.post("/signup", function (req, res) {
             return res.redirect("/signup");
         } else {
             passport.authenticate("local")(req, res, function () {
+                req.flash("info","Click the Get Articles link to view articles.");
                 res.redirect("/home");
             });
         }
@@ -57,7 +58,7 @@ router.post("/signup", function (req, res) {
 ////Auth ROUTES - user signin
 //==============================================
 router.post("/signin", passport.authenticate("local", {
-    successRedirect: "/home",
+    successRedirect: "/articles/saved",
     failureRedirect: "/signin",
     failureFlash: true
 }), function(req, res) {});
@@ -73,3 +74,4 @@ router.get("/logout", function (req, res) {
 
 
 module.exports = router;
+

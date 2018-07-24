@@ -18,10 +18,12 @@ body{
 
 h1.ui.header {
     font-size: 3rem;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 h3.ui.header {
     font-size: 1.5rem;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .home-container{
@@ -45,6 +47,7 @@ h3.ui.header {
 
 .article-content p{
     padding: 1% 2%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .article-content .extra{
@@ -111,6 +114,7 @@ h3.ui.header {
 
 .ui.comments .comment .text {
     font-size: 1.3em;
+    font-family: 'Roboto', sans-serif;
 }
 
 .ui.message {
