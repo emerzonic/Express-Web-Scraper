@@ -1,6 +1,6 @@
 # Express Web Scrapper
 
-This is an Express application built using MongoBD for database, Express js for server-side routing and Node js framework. The app is fetching data from the New York Times website. 
+This is an Express application built using MongoBD for database, Express js for server-side routing and Node js framework. The app is scraping data from the New York Times website. 
 
 * The app's Get Article route initiates a server-side logic that utilizes the NPM's request and cheerio packeges to scrape of tech news from the New York Time website. The json response is then manipulated and rendered back to the client-side and displayed for the user in a polished Semantic UI page using Handlebars. 
 
