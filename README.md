@@ -10,6 +10,6 @@ This is an Express application built using MongoBD for database, Express js for 
 
 * Users can also delete an article from their saved articles. When a delete request is made by the user for a particular article, the articlue's id is sent via a delete request that uses mongoose's findByIdAndRemove method to delete the article.
 
-### Get all the latest tech new [here](https://dry-plains-35717.herokuapp.com/home)
+### Get all the latest tech news [here](https://dry-plains-35717.herokuapp.com/home)
 
 
